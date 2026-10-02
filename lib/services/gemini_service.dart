@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 class GeminiService {
   static const String _apiKey = String.fromEnvironment('GEMINI_API_KEY');
 
-  static const String _model = 'gemini-2.5-flash';
+  static const String _model = 'gemini-3.5-flash';
 
   Future<String> generateText(String prompt) async {
     if (_apiKey.isEmpty) {
@@ -33,7 +33,6 @@ class GeminiService {
         )
         .timeout(const Duration(seconds: 20));
 
-    // ตรวจสอบ Status Code
     if (response.statusCode != 200) {
       throw Exception(
         'Gemini API Error: ${response.statusCode}\n${response.body}',
@@ -42,14 +41,12 @@ class GeminiService {
 
     final data = jsonDecode(response.body) as Map<String, dynamic>;
 
-    // ตรวจสอบ candidates ว่ามีข้อมูลหรือไม่
     final candidates = data['candidates'];
 
     if (candidates is! List || candidates.isEmpty) {
       throw Exception('Gemini ไม่ได้ส่ง candidates กลับมา');
     }
 
-    // ดึงข้อความจาก response
     final content = candidates[0]['content'];
 
     if (content is! Map<String, dynamic>) {
