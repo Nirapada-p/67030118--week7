@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/cart_model.dart';
-import 'screens/home_page.dart';
+import 'screens/main_scaffold.dart';   // ← เปลี่ยนจาก screens/home_page.dart
 import 'repositories/item_repository_api.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Campus Marketplace',
       debugShowCheckedModeBanner: false,
-      home: HomePage(repository: ItemRepositoryApi()),
+      home: MainScaffold(repository: ItemRepositoryApi()),   // ← เปลี่ยนจาก HomePage(...)
     );
   }
 }

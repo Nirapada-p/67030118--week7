@@ -6,6 +6,7 @@ import '../models/cart_model.dart';
 import '../repositories/item_repository.dart';
 import '../services/gemini_service.dart';
 import 'checkout_page.dart';
+import 'sell_item_page.dart';
 
 class HomePage extends StatefulWidget {
   final ItemRepository repository;
@@ -63,6 +64,18 @@ class _HomePageState extends State<HomePage> {
             icon: const Icon(Icons.auto_awesome),
             tooltip: 'ทดสอบ Gemini',
             onPressed: _testGemini,
+          ),
+
+          // ปุ่มลงประกาศขายสินค้า
+          IconButton(
+            icon: const Icon(Icons.add_business),
+            tooltip: 'ลงประกาศขายสินค้า',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const SellItemPage()),
+              );
+            },
           ),
 
           // ปุ่มตะกร้าสินค้า
